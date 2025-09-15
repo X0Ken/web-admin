@@ -1,0 +1,105 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a routerLink="/welcome">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>管理系统</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/welcome">
+          <span nz-icon nzType="home"></span>
+          <span>首页</span>
+        </a>
+      </li>
+      <li nz-submenu nzOpen nzTitle="系统管理" nzIcon="tool">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/users">
+              <span nz-icon nzType="team"></span>
+              <span>用户管理</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/roles">
+              <span nz-icon nzType="safety"></span>
+              <span>角色管理</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/permissions">
+              <span nz-icon nzType="safety-certificate"></span>
+              <span>权限管理</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/departments">
+              <span nz-icon nzType="apartment"></span>
+              <span>部门管理</span>
+            </a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/user-departments">
+              <span nz-icon nzType="team"></span>
+              <span>用户部门关联</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="系统监控" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/dashboard">
+              <span nz-icon nzType="dashboard"></span>
+              <span>仪表盘</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="个人中心" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/profile">
+              <span nz-icon nzType="user"></span>
+              <span>个人信息</span>
+            </a>
+          </li>
+                  <li nz-menu-item nzMatchRouter>
+          <a routerLink="/settings">
+            <span nz-icon nzType="tool"></span>
+            <span>系统设置</span>
+          </a>
+        </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <nz-icon class="trigger" [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" />
+        </span>
+        <div class="header-right">
+          <span class="welcome-text">欢迎，{{ currentUser?.username || '用户' }}</span>
+          <button nz-button nzType="text" (click)="logout()">
+            <span nz-icon nzType="logout"></span>
+            退出
+          </button>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

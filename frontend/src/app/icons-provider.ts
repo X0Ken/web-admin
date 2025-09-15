@@ -1,0 +1,41 @@
+import {
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  FormOutline,
+  DashboardOutline,
+  HomeOutline,
+  TeamOutline,
+  SafetyOutline,
+  SafetyCertificateOutline,
+  FileTextOutline,
+  UserOutline,
+  ToolOutline,
+  LogoutOutline,
+  SettingOutline,
+  ApartmentOutline,
+  PlusOutline,
+  EditOutline,
+  DeleteOutline,
+  UserAddOutline
+} from '@ant-design/icons-angular/icons';
+
+export const icons = [
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  DashboardOutline,
+  FormOutline,
+  HomeOutline,
+  TeamOutline,
+  SafetyOutline,
+  SafetyCertificateOutline,
+  FileTextOutline,
+  UserOutline,
+  ToolOutline,
+  LogoutOutline,
+  SettingOutline,
+  ApartmentOutline,
+  PlusOutline,
+  EditOutline,
+  DeleteOutline,
+  UserAddOutline
+];
