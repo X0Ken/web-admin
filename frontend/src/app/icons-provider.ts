@@ -16,7 +16,21 @@ import {
   PlusOutline,
   EditOutline,
   DeleteOutline,
-  UserAddOutline
+  UserAddOutline,
+  ClusterOutline,
+  DatabaseOutline,
+  CloudOutline,
+  CloudServerOutline,
+  AppstoreOutline,
+  EnvironmentOutline,
+  WifiOutline,
+  UsergroupAddOutline,
+  SearchOutline,
+  DownloadOutline,
+  UploadOutline,
+  LaptopOutline,
+  GlobalOutline,
+  ApiOutline
 } from '@ant-design/icons-angular/icons';
 
 export const icons = [
@@ -37,5 +51,19 @@ export const icons = [
   PlusOutline,
   EditOutline,
   DeleteOutline,
-  UserAddOutline
+  UserAddOutline,
+  ClusterOutline,
+  DatabaseOutline,
+  CloudOutline,
+  CloudServerOutline,
+  AppstoreOutline,
+  EnvironmentOutline,
+  WifiOutline,
+  UsergroupAddOutline,
+  SearchOutline,
+  DownloadOutline,
+  UploadOutline,
+  LaptopOutline,
+  GlobalOutline,
+  ApiOutline
 ];

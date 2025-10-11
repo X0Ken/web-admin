@@ -19,7 +19,7 @@
           <span>首页</span>
         </a>
       </li>
-      <li nz-submenu nzOpen nzTitle="系统管理" nzIcon="tool">
+      <li nz-submenu [nzOpen]="systemManagementOpen" nzTitle="系统管理" nzIcon="tool">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/users">
@@ -47,23 +47,13 @@
           </li>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/user-departments">
-              <span nz-icon nzType="team"></span>
+              <span nz-icon nzType="usergroup-add"></span>
               <span>用户部门关联</span>
             </a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="系统监控" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/dashboard">
-              <span nz-icon nzType="dashboard"></span>
-              <span>仪表盘</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzTitle="个人中心" nzIcon="user">
+      <li nz-submenu [nzOpen]="personalCenterOpen" nzTitle="个人中心" nzIcon="user">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/profile">
@@ -71,12 +61,12 @@
               <span>个人信息</span>
             </a>
           </li>
-                  <li nz-menu-item nzMatchRouter>
-          <a routerLink="/settings">
-            <span nz-icon nzType="tool"></span>
-            <span>系统设置</span>
-          </a>
-        </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/settings">
+              <span nz-icon nzType="setting"></span>
+              <span>系统设置</span>
+            </a>
+          </li>
         </ul>
       </li>
     </ul>

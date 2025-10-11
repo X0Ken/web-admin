@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ApiConfig, API_ENDPOINTS } from '../config/api.config';
+import { ApiConfig } from '../config/api.config';
 
 export interface LoginRequest {
   username: string;
@@ -37,7 +37,7 @@ export class AuthService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   private tokenSubject = new BehaviorSubject<string | null>(null);
   private refreshTimer: any = null;
-
+  private apiUrl: string;
   public isAuthenticated$ = this.isAuthenticatedSubject.asObservable();
   public token$ = this.tokenSubject.asObservable();
 
@@ -45,7 +45,7 @@ export class AuthService {
     // 检查本地存储中是否有token和过期时间
     const savedToken = localStorage.getItem('auth_token');
     const savedExpiry = localStorage.getItem('auth_token_expiry');
-    
+    this.apiUrl = this.apiConfig.buildUrl('auth');
     if (savedToken && savedExpiry) {
       const expiryTime = parseInt(savedExpiry);
       const now = Date.now();
@@ -66,7 +66,7 @@ export class AuthService {
     const loginData: LoginRequest = { username, password };
 
     return new Promise((resolve) => {
-      this.http.post<LoginResponse>(`${this.apiConfig.authApiUrl}${API_ENDPOINTS.AUTH.LOGIN}`, loginData)
+      this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginData)
         .subscribe({
           next: (response) => {
             if (response.auth && response.auth.token) {
@@ -112,7 +112,7 @@ export class AuthService {
   }
 
   getCurrentUser(): Observable<CurrentUserResponse> {
-    return this.http.get<CurrentUserResponse>(`${this.apiConfig.authApiUrl}${API_ENDPOINTS.AUTH.ME}`);
+    return this.http.get<CurrentUserResponse>(`${this.apiUrl}/me`);
   }
 
   hasPermission(permission: string): boolean {
@@ -157,7 +157,7 @@ export class AuthService {
     }
 
     // 调用refresh接口获取新token
-    this.http.post<LoginResponse>(`${this.apiConfig.authApiUrl}${API_ENDPOINTS.AUTH.REFRESH}`, {})
+    this.http.post<LoginResponse>(`${this.apiUrl}/refresh`, {})
       .subscribe({
         next: (response) => {
           if (response.auth && response.auth.token) {

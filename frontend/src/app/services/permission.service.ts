@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiConfig, API_ENDPOINTS } from '../config/api.config';
+import { ApiConfig } from '../config/api.config';
 
 export interface Permission {
   id: number;
@@ -51,29 +51,32 @@ export interface UpdatePermissionRequest {
   providedIn: 'root'
 })
 export class PermissionService {
-  constructor(private http: HttpClient, private apiConfig: ApiConfig) {}
+  private apiUrl: string;
+  constructor(private http: HttpClient, private apiConfig: ApiConfig) {
+    this.apiUrl = this.apiConfig.buildUrl('permissions');
+  }
 
   getPermissions(page: number = 1, perPage: number = 20): Observable<PermissionsResponse> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('per_page', perPage.toString());
     
-    return this.http.get<PermissionsResponse>(`${this.apiConfig.permissionsApiUrl}${API_ENDPOINTS.PERMISSIONS.LIST}`, { params });
+    return this.http.get<PermissionsResponse>(`${this.apiUrl}`, { params });
   }
 
   getPermission(id: number): Observable<PermissionResponse> {
-    return this.http.get<PermissionResponse>(`${this.apiConfig.permissionsApiUrl}${API_ENDPOINTS.PERMISSIONS.DETAIL(id)}`);
+    return this.http.get<PermissionResponse>(`${this.apiUrl}/${id}`);
   }
 
   createPermission(permissionData: CreatePermissionRequest): Observable<any> {
-    return this.http.post(`${this.apiConfig.permissionsApiUrl}${API_ENDPOINTS.PERMISSIONS.CREATE}`, permissionData);
+    return this.http.post(`${this.apiUrl}`, permissionData);
   }
 
   updatePermission(id: number, permissionData: UpdatePermissionRequest): Observable<any> {
-    return this.http.put(`${this.apiConfig.permissionsApiUrl}${API_ENDPOINTS.PERMISSIONS.UPDATE(id)}`, permissionData);
+    return this.http.put(`${this.apiUrl}/${id}`, permissionData);
   }
 
   deletePermission(id: number): Observable<any> {
-    return this.http.delete(`${this.apiConfig.permissionsApiUrl}${API_ENDPOINTS.PERMISSIONS.DELETE(id)}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

@@ -25,10 +25,6 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/permissions/permissions.routes').then(m => m.PERMISSIONS_ROUTES)
       },
       {
-        path: 'dashboard',
-        loadChildren: () => import('./pages/dashboard/dashboard.routes').then(m => m.DASHBOARD_ROUTES)
-      },
-      {
         path: 'profile',
         loadChildren: () => import('./pages/profile/profile.routes').then(m => m.PROFILE_ROUTES)
       },

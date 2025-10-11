@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiConfig, API_ENDPOINTS } from '../config/api.config';
+import { ApiConfig } from '../config/api.config';
 
 export interface Role {
   id: number;
@@ -50,38 +50,41 @@ export interface AssignPermissionRequest {
   providedIn: 'root'
 })
 export class RoleService {
-  constructor(private http: HttpClient, private apiConfig: ApiConfig) {}
+  private apiUrl: string;
+  constructor(private http: HttpClient, private apiConfig: ApiConfig) {
+    this.apiUrl = this.apiConfig.buildUrl('roles');
+  }
 
   getRoles(page: number = 1, perPage: number = 20): Observable<RolesResponse> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('per_page', perPage.toString());
     
-    return this.http.get<RolesResponse>(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.LIST}`, { params });
+    return this.http.get<RolesResponse>(`${this.apiUrl}`, { params });
   }
 
   getRole(id: number): Observable<RoleResponse> {
-    return this.http.get<RoleResponse>(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.DETAIL(id)}`);
+    return this.http.get<RoleResponse>(`${this.apiUrl}/${id}`);
   }
 
   createRole(roleData: CreateRoleRequest): Observable<any> {
-    return this.http.post(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.CREATE}`, roleData);
+    return this.http.post(`${this.apiUrl}`, roleData);
   }
 
   updateRole(id: number, roleData: UpdateRoleRequest): Observable<any> {
-    return this.http.put(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.UPDATE(id)}`, roleData);
+    return this.http.put(`${this.apiUrl}/${id}`, roleData);
   }
 
   deleteRole(id: number): Observable<any> {
-    return this.http.delete(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.DELETE(id)}`);
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
   assignPermission(roleId: number, permissionId: number): Observable<any> {
-    return this.http.post(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.ASSIGN_PERMISSION(roleId)}`, { permission_id: permissionId });
+    return this.http.post(`${this.apiUrl}/${roleId}/permissions`, { permission_id: permissionId });
   }
 
   removePermission(roleId: number, permissionId: number): Observable<any> {
-    return this.http.delete(`${this.apiConfig.rolesApiUrl}${API_ENDPOINTS.ROLES.REMOVE_PERMISSION(roleId)}`, { 
+    return this.http.delete(`${this.apiUrl}/${roleId}/permissions`, { 
       body: { permission_id: permissionId } 
     });
   }

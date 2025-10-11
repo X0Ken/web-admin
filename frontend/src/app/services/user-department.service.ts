@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Department } from './department.service';
-import { ApiConfig, API_ENDPOINTS } from '../config/api.config';
+import { ApiConfig } from '../config/api.config';
 
 export interface UserDepartment {
   id: number;
@@ -60,61 +60,64 @@ export interface BatchAssignResponse {
   providedIn: 'root'
 })
 export class UserDepartmentService {
-  constructor(private http: HttpClient, private apiConfig: ApiConfig) {}
+  private apiUrl: string;
+  constructor(private http: HttpClient, private apiConfig: ApiConfig) {
+    this.apiUrl = this.apiConfig.buildUrl('user-departments');
+  }
 
   /**
    * 为用户分配部门
    */
   assignUser(request: AssignUserRequest): Observable<UserDepartmentResponse> {
-    return this.http.post<UserDepartmentResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.ASSIGN}`, request);
+    return this.http.post<UserDepartmentResponse>(`${this.apiUrl}/assign`, request);
   }
 
   /**
    * 批量分配用户到部门
    */
   batchAssignUsers(request: BatchAssignRequest): Observable<BatchAssignResponse> {
-    return this.http.post<BatchAssignResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.BATCH_ASSIGN}`, request);
+    return this.http.post<BatchAssignResponse>(`${this.apiUrl}/batch-assign`, request);
   }
 
   /**
    * 获取用户部门关联详情
    */
   getUserDepartment(id: number): Observable<UserDepartmentResponse> {
-    return this.http.get<UserDepartmentResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.DETAIL(id)}`);
+    return this.http.get<UserDepartmentResponse>(`${this.apiUrl}/${id}`);
   }
 
   /**
    * 更新用户部门信息
    */
   updateUserDepartment(id: number, request: UpdateUserDepartmentRequest): Observable<UserDepartmentResponse> {
-    return this.http.put<UserDepartmentResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.UPDATE(id)}`, request);
+    return this.http.put<UserDepartmentResponse>(`${this.apiUrl}/${id}`, request);
   }
 
   /**
    * 移除用户部门关联
    */
   removeUserDepartment(id: number): Observable<{ message: string }> {
-    return this.http.delete<{ message: string }>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.DELETE(id)}`);
+    return this.http.delete<{ message: string }>(`${this.apiUrl}/${id}`);
   }
 
   /**
    * 获取用户的所有部门
    */
   getUserDepartments(userId: number): Observable<UserDepartmentListResponse> {
-    return this.http.get<UserDepartmentListResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.USER_DEPARTMENTS(userId)}`);
+    return this.http.get<UserDepartmentListResponse>(`${this.apiUrl}/user/${userId}`);
   }
 
   /**
    * 获取用户的主要部门
    */
   getUserPrimaryDepartment(userId: number): Observable<UserDepartmentResponse> {
-    return this.http.get<UserDepartmentResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.USER_PRIMARY(userId)}`);
+    return this.http.get<UserDepartmentResponse>(`${this.apiUrl}/user/${userId}/primary`);
   }
 
   /**
    * 获取部门的所有用户
    */
   getDepartmentUsers(departmentId: number): Observable<UserDepartmentListResponse> {
-    return this.http.get<UserDepartmentListResponse>(`${this.apiConfig.userDepartmentsApiUrl}${API_ENDPOINTS.USER_DEPARTMENTS.DEPARTMENT_USERS(departmentId)}`);
+    return this.http.get<UserDepartmentListResponse>(`${this.apiUrl}/department/${departmentId}`);
   }
 }
