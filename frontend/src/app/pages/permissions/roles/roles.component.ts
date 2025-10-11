@@ -14,8 +14,8 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { FormsModule } from '@angular/forms';
-import { RoleService, Role, PaginationInfo } from '../../services/role.service';
-import { PermissionService, Permission } from '../../services/permission.service';
+import { RoleService, Role, PaginationInfo } from '../../../services/role.service';
+import { PermissionService, Permission } from '../../../services/permission.service';
 
 @Component({
   selector: 'app-roles',

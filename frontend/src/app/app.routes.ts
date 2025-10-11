@@ -13,32 +13,16 @@ export const routes: Routes = [
         loadChildren: () => import('./pages/welcome/welcome.routes').then(m => m.WELCOME_ROUTES)
       },
       {
-        path: 'users',
-        loadChildren: () => import('./pages/users/users.routes').then(m => m.USERS_ROUTES)
-      },
-      {
-        path: 'roles',
-        loadChildren: () => import('./pages/roles/roles.routes').then(m => m.ROLES_ROUTES)
-      },
-      {
         path: 'permissions',
         loadChildren: () => import('./pages/permissions/permissions.routes').then(m => m.PERMISSIONS_ROUTES)
       },
       {
-        path: 'profile',
-        loadChildren: () => import('./pages/profile/profile.routes').then(m => m.PROFILE_ROUTES)
+        path: 'me',
+        loadChildren: () => import('./pages/me/me.routes').then(m => m.ME_ROUTES)
       },
       {
-        path: 'settings',
-        loadChildren: () => import('./pages/settings/settings.routes').then(m => m.SETTINGS_ROUTES)
-      },
-      {
-        path: 'departments',
-        loadChildren: () => import('./pages/departments/departments.routes').then(m => m.DEPARTMENTS_ROUTES)
-      },
-      {
-        path: 'user-departments',
-        loadChildren: () => import('./pages/user-departments/user-departments.routes').then(m => m.USER_DEPARTMENTS_ROUTES)
+        path: 'system',
+        loadChildren: () => import('./pages/system/system.routes').then(m => m.SYSTEM_ROUTES)
       }
     ]
   }

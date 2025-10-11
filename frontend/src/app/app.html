@@ -19,50 +19,54 @@
           <span>首页</span>
         </a>
       </li>
-      <li nz-submenu [nzOpen]="systemManagementOpen" nzTitle="系统管理" nzIcon="tool">
+      <li nz-submenu [nzOpen]="personalCenterOpen" nzTitle="个人中心" nzIcon="user">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/users">
+            <a routerLink="/me/profile">
+              <span nz-icon nzType="user"></span>
+              <span>个人信息</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu [nzOpen]="permissionsManagementOpen" nzTitle="权限管理" nzIcon="safety-certificate">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/permissions/users">
               <span nz-icon nzType="team"></span>
               <span>用户管理</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/roles">
+            <a routerLink="/permissions/roles">
               <span nz-icon nzType="safety"></span>
               <span>角色管理</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/permissions">
+            <a routerLink="/permissions/permissions">
               <span nz-icon nzType="safety-certificate"></span>
               <span>权限管理</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/departments">
+            <a routerLink="/permissions/departments">
               <span nz-icon nzType="apartment"></span>
               <span>部门管理</span>
             </a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/user-departments">
+            <a routerLink="/permissions/user-departments">
               <span nz-icon nzType="usergroup-add"></span>
               <span>用户部门关联</span>
             </a>
           </li>
         </ul>
       </li>
-      <li nz-submenu [nzOpen]="personalCenterOpen" nzTitle="个人中心" nzIcon="user">
+      <li nz-submenu [nzOpen]="systemManagementOpen" nzTitle="系统管理" nzIcon="setting">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/profile">
-              <span nz-icon nzType="user"></span>
-              <span>个人信息</span>
-            </a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="/settings">
+            <a routerLink="/system/settings">
               <span nz-icon nzType="setting"></span>
               <span>系统设置</span>
             </a>

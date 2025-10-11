@@ -16,9 +16,9 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-import { UserDepartmentService, UserDepartment, AssignUserRequest, BatchAssignRequest, UpdateUserDepartmentRequest } from '../../services/user-department.service';
-import { DepartmentService, Department } from '../../services/department.service';
-import { UserService, User } from '../../services/user.service';
+import { UserDepartmentService, UserDepartment, AssignUserRequest, BatchAssignRequest, UpdateUserDepartmentRequest } from '../../../services/user-department.service';
+import { DepartmentService, Department } from '../../../services/department.service';
+import { UserService, User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-user-departments',

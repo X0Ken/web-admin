@@ -13,7 +13,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { FormsModule } from '@angular/forms';
-import { PermissionService, Permission, PaginationInfo } from '../../services/permission.service';
+import { PermissionService, Permission, PaginationInfo } from '../../../services/permission.service';
 
 @Component({
   selector: 'app-permissions',

@@ -12,7 +12,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { FormsModule } from '@angular/forms';
-import { UserService, User, PaginationInfo } from '../../services/user.service';
+import { UserService, User, PaginationInfo } from '../../../services/user.service';
 
 @Component({
   selector: 'app-users',

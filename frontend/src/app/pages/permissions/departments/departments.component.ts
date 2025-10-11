@@ -17,8 +17,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTreeNodeOptions } from 'ng-zorro-antd/tree';
-import { DepartmentService, Department, CreateDepartmentRequest, UpdateDepartmentRequest } from '../../services/department.service';
-import { UserService, User } from '../../services/user.service';
+import { DepartmentService, Department, CreateDepartmentRequest, UpdateDepartmentRequest } from '../../../services/department.service';
+import { UserService, User } from '../../../services/user.service';
 
 @Component({
   selector: 'app-departments',

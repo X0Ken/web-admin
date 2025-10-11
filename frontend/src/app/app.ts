@@ -21,6 +21,7 @@ export class App implements OnInit {
   // 菜单展开状态
   systemManagementOpen = false;
   personalCenterOpen = false;
+  permissionsManagementOpen = false;
 
   constructor(
     private authService: AuthService,
@@ -74,13 +75,13 @@ export class App implements OnInit {
     // 重置所有菜单状态
     this.systemManagementOpen = false;
     this.personalCenterOpen = false;
-
+    this.permissionsManagementOpen = false;
     // 根据URL路径设置对应的菜单展开
-    if (url.startsWith('/users') || url.startsWith('/roles') || 
-        url.startsWith('/permissions') || url.startsWith('/departments') || 
-        url.startsWith('/user-departments')) {
+    if (url.startsWith('/permissions')) {
+      this.permissionsManagementOpen = true;
+    } else if (url.startsWith('/system')) {
       this.systemManagementOpen = true;
-    } else if (url.startsWith('/profile') || url.startsWith('/settings')) {
+    } else if (url.startsWith('/profile')) {
       this.personalCenterOpen = true;
     }
   }
