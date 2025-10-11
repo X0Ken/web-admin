@@ -30,7 +30,8 @@ import {
   UploadOutline,
   LaptopOutline,
   GlobalOutline,
-  ApiOutline
+  ApiOutline,
+  LockOutline
 } from '@ant-design/icons-angular/icons';
 
 export const icons = [
@@ -65,5 +66,6 @@ export const icons = [
   UploadOutline,
   LaptopOutline,
   GlobalOutline,
-  ApiOutline
+  ApiOutline,
+  LockOutline
 ];
